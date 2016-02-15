@@ -93,7 +93,8 @@ public class AboutActivity extends AppCompatActivity {
                 + "to help improve your future times.\n\nCYCLING - same use as running. Time your "
                 + "bike trips to help improve your cycling skills.\n\nAUTOMOTIVE - calculate your "
                 + "trip times when commuting. Take alternate routes and check on average which route "
-                + "is fastest. You can also use this app on your local track to time your laps.";
+                + "is fastest. You can also use this app on your local track to time your laps."
+                + "\n\nNote:";
         aboutText.setText(about);
     }
 

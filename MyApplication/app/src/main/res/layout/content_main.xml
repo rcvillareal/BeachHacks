@@ -57,7 +57,7 @@
 
     <!-- Buttons -->
     <LinearLayout
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:orientation="vertical"
         android:gravity="center"
         android:layout_width="fill_parent"
@@ -65,7 +65,7 @@
 
         <Button
             android:id="@+id/startButton"
-            android:background="#2b2b2b"
+            android:background="@drawable/button_style"
             android:textColor="#ffffff"
             android:text=" Start"
             android:gravity="left|center_vertical"
@@ -78,7 +78,7 @@
 
         <Button
             android:id="@+id/previousTimesButton"
-            android:background="#2b2b2b"
+            android:background="@drawable/button_style"
             android:textColor="#ffffff"
             android:text=" Previous Times"
             android:gravity="left|center_vertical"
@@ -91,7 +91,7 @@
 
         <Button
             android:id="@+id/aboutButton"
-            android:background="#2b2b2b"
+            android:background="@drawable/button_style"
             android:textColor="#ffffff"
             android:text=" About"
             android:gravity="left|center_vertical"

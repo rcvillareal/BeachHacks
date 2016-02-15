@@ -56,8 +56,9 @@
     </View>
 
     <LinearLayout
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:orientation="horizontal"
+        android:background="@drawable/start_background"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
@@ -70,7 +71,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
-            android:gravity="right|center_vertical"
+            android:gravity="center|left"
             android:textColor="#ff0000"
             android:text="0:00:00"
             android:textSize="60sp"/>
@@ -98,7 +99,7 @@
                 android:layout_height="0dp"
                 android:layout_marginBottom="15dp"
                 android:layout_marginRight="15dp"
-                android:background="#ff0000"
+                android:background="@drawable/temp_button_style"
                 android:textColor="#ffffff"
                 android:textSize="20dp"
                 android:text="Start"/>
@@ -110,7 +111,7 @@
                 android:layout_height="0dp"
                 android:layout_marginBottom="15dp"
                 android:layout_marginRight="15dp"
-                android:background="#ff0000"
+                android:background="@drawable/temp_button_style"
                 android:textColor="#ffffff"
                 android:textSize="20dp"
                 android:text="Stop"/>
