@@ -21,7 +21,7 @@
             android:id="@+id/title"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:text="Ready. Set. Go!"
+            android:text="Go Time!"
             android:textSize="25sp"
             android:textColor="#f9ec64"
             android:layout_width="wrap_content"

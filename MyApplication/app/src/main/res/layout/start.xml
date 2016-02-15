@@ -57,21 +57,65 @@
 
     <LinearLayout
         android:layout_weight="4"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
         <TextView
+            android:layout_weight="6"
             android:id="@+id/timeText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
-            android:layout_gravity="center"
+            android:layout_gravity="center_vertical"
             android:textColor="#ff0000"
-            android:text="0.00s"
-            android:textSize="75sp"/>
+            android:text="0:00:00"
+            android:textSize="60sp"/>
+
+        <LinearLayout
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_weight=".25"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#ff0000"
+                android:textSize="15dp"
+                android:text="Temp Buttons"/>
+
+            <Button
+                android:id="@+id/startTimerButton"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#ff0000"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:text="Start"/>
+
+            <Button
+                android:id="@+id/stopTimerButton"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#ff0000"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:text="Stop"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

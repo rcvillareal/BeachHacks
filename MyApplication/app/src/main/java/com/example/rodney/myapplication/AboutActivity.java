@@ -22,6 +22,7 @@ public class AboutActivity extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    private TextView aboutText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +35,9 @@ public class AboutActivity extends AppCompatActivity {
         TextView aboutTitle = (TextView) findViewById(R.id.aboutTitle);
         aboutTitle.setTypeface(xenotronFont);
 
-        TextView aboutText = (TextView) findViewById(R.id.aboutText);
+        aboutText = (TextView) findViewById(R.id.aboutText);
         aboutText.setTypeface(bankGothicLightFont);
-
+        setAboutText();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -82,4 +83,18 @@ public class AboutActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
+
+    private void setAboutText() {
+        String about = "ABOUT: This is a timer app that calculates the trip time from your initial "
+                + "location to a selected destination. You can also set your destination as your "
+                + "initial position to time \"laps\".\n"
+                + "\nRecommended Applications (but not limited to):\n\nWALKING/RUNNING - "
+                + "time your walks/runs. These times will be saved and can be used as a reference "
+                + "to help improve your future times.\n\nCYCLING - same use as running. Time your "
+                + "bike trips to help improve your cycling skills.\n\nAUTOMOTIVE - calculate your "
+                + "trip times when commuting. Take alternate routes and check on average which route "
+                + "is fastest. You can also use this app on your local track to time your laps.";
+        aboutText.setText(about);
+    }
+
 }
