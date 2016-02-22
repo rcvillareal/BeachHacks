@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.rodney.myapplication.MainActivity"
+    tools:context="rodney.myapplication.MainActivity"
     android:background="#000000">
 
     <include layout="@layout/content_main" />

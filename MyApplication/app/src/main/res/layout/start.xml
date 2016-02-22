@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#e2e2e2">
+    android:background="#939393">
 
     <LinearLayout
-        android:layout_weight="1"
+        android:layout_weight=".66"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
@@ -35,7 +35,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:layout_weight="5"
+        android:layout_weight="3"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp">
@@ -50,71 +50,229 @@
     </LinearLayout>
 
     <View
-        android:background="#2b2b2b"
+        android:background="#787878"
         android:layout_width="match_parent"
         android:layout_height="1dp">
     </View>
 
     <LinearLayout
-        android:layout_weight="5"
-        android:orientation="horizontal"
-        android:background="@drawable/start_background"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:background="#9d9d9d"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
-        <TextView
-            android:layout_weight="6"
-            android:id="@+id/timeText"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center|left"
-            android:textColor="#ff0000"
-            android:text="0:00:00"
-            android:textSize="60sp"/>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <!--
+            <TextView
+                android:id="@+id/timeText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center|left"
+                android:textColor="#ff0000"
+                android:text="0:00:00:00"
+                android:textSize="40sp"/>
+             -->
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:background="@drawable/start_background"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textColor="#2b2b2b"
+                    android:text=" HOURS:"/>
+
+                <TextView
+                    android:id="@+id/hourText"
+                    android:layout_weight="3"
+                    android:text="0"
+                    android:textSize="40dp"
+                    android:textColor="#ed0000"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" />
+
+            </LinearLayout>
+
+            <View
+                android:background="#787878"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:background="@drawable/start_background"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textColor="#2b2b2b"
+                    android:text=" MINUTES:"/>
+
+                <TextView
+                    android:id="@+id/minuteText"
+                    android:layout_weight="3"
+                    android:text="00"
+                    android:textSize="40dp"
+                    android:textColor="#ed0000"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" />
+
+            </LinearLayout>
+
+            <View
+                android:background="#787878"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:background="@drawable/start_background"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textColor="#2b2b2b"
+                    android:text=" SECONDS:"/>
+
+                <TextView
+                    android:id="@+id/secondText"
+                    android:layout_weight="3"
+                    android:text="00"
+                    android:textSize="40dp"
+                    android:textColor="#ed0000"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" />
+
+            </LinearLayout>
+
+            <View
+                android:background="#787878"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:background="@drawable/start_background"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textColor="#2b2b2b"
+                    android:text=" CENTI:"/>
+
+                <TextView
+                    android:id="@+id/centiText"
+                    android:layout_weight="3"
+                    android:text="00"
+                    android:textSize="40dp"
+                    android:textColor="#ed0000"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:background="#787878"
+            android:layout_width="match_parent"
+            android:layout_height="1dp">
+        </View>
 
         <LinearLayout
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
 
-            <TextView
-                android:layout_weight=".25"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+
+            <LinearLayout
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_weight=".50"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:textColor="#ff0000"
+                    android:textSize="15dp"
+                    android:text="Temp Buttons"/>
+
+                <Button
+                    android:id="@+id/startTimerButton"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/temp_button_style"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp"
+                    android:text="Start"/>
+
+                <Button
+                    android:id="@+id/stopTimerButton"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/temp_button_style"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp"
+                    android:text="Stop"/>
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_weight="1"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginBottom="15dp"
-                android:layout_marginTop="15dp"
-                android:textColor="#ff0000"
+                android:layout_marginRight="15dp"
+                android:text="Save"
                 android:textSize="15dp"
-                android:text="Temp Buttons"/>
-
-            <Button
-                android:id="@+id/startTimerButton"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/temp_button_style"
-                android:textColor="#ffffff"
-                android:textSize="20dp"
-                android:text="Start"/>
-
-            <Button
-                android:id="@+id/stopTimerButton"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/temp_button_style"
-                android:textColor="#ffffff"
-                android:textSize="20dp"
-                android:text="Stop"/>
+                android:textColor="#f9ec64"
+                android:background="@drawable/temp_save_button_style"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
