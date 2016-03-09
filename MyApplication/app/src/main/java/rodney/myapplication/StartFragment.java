@@ -68,8 +68,8 @@ public class StartFragment extends Fragment {
     private SupportMapFragment supportMapFragment;
     private Map<String, Marker> keyMarkerMap = new HashMap<String, Marker>();
 
-    private LocationManager locationManager;
-    private Location lastLocation;
+    private LocationManager lm;
+    private Location location;
     private LocationListener locationListener;
 
     private int hours;
@@ -84,7 +84,7 @@ public class StartFragment extends Fragment {
     private Marker startMarker;
     private ArrayList<LatLng> points;
     private Polyline line;
-
+    private LatLng myLatLng;
 
     Handler timerHandler = new Handler();
 
@@ -135,6 +135,10 @@ public class StartFragment extends Fragment {
         centiText = (TextView) v.findViewById(R.id.centiText);
         centiText.setTypeface(miniskapFont);
 
+        lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        myLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+
         startTimer = (Button) v.findViewById(R.id.startTimerButton);
         startTimer.setTypeface(xenotronFont);
         startTimer.setOnClickListener(new View.OnClickListener() {
@@ -143,15 +147,11 @@ public class StartFragment extends Fragment {
                 startTime = System.currentTimeMillis();
                 timerHandler.postDelayed(timerRunnable, 0);
 
-//                LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-//                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-                LatLng latlng = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
-
                 if(startMarker != null) {
                     startMarker.remove();
                 }
-                startMarker = mMap.addMarker(new MarkerOptions().position(latlng).title("Start Location"));
+
+                startMarker = mMap.addMarker(new MarkerOptions().position(myLatLng).title("Start Location"));
                 start = true;
             }
         });
@@ -211,32 +211,49 @@ public class StartFragment extends Fragment {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 mMap = googleMap;
-                mMap.setMyLocationEnabled(true);
+                //mMap.setMyLocationEnabled(true);
                 if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                         == PackageManager.PERMISSION_GRANTED)
                     mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
-                LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-                LatLng mylatlng = new LatLng(location.getLatitude(), location.getLongitude());
-
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(mylatlng).zoom(18).build();
+                CameraPosition cameraPosition = new CameraPosition.Builder().target(myLatLng).zoom(18).build();
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
-
-                mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+                locationListener = new LocationListener() {
                     @Override
-                    public void onMyLocationChange(Location location) {
-                        if(start) {
-                            LatLng latLng = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
-                            points.add(latLng);
+                    public void onLocationChanged(Location loc) {
+                        myLatLng = new LatLng(loc.getLatitude(), loc.getLongitude());
+                        if (start) {
+                            points.add(myLatLng);
                             redrawLine();
+                            CameraPosition cameraPosition = new CameraPosition.Builder().target(
+                                    new LatLng(loc.getLatitude(), loc.getLongitude())).zoom(15).build();
+                            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                         }
                     }
+                    @Override
+                    public void onStatusChanged(String provider, int status, Bundle extras) {
+                    }
+                    @Override
+                    public void onProviderEnabled(String provider) {
+                    }
+                    @Override
+                    public void onProviderDisabled(String provider) {
+                    }
+                };
 
-                });
+//                mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+//                    @Override
+//                    public void onMyLocationChange(Location location) {
+//                        if (start) {
+//                            points.add(myLatLng);
+//                            redrawLine();
+//                            CameraPosition cameraPosition = new CameraPosition.Builder().target(myLatLng).zoom(15).build();
+//                            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//                        }
+//                    }
+//                });
 
 //                mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
 //                    @Override
@@ -321,7 +338,7 @@ public class StartFragment extends Fragment {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED)
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 3, locationListener);
+            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 3, locationListener);
     }
 }
 

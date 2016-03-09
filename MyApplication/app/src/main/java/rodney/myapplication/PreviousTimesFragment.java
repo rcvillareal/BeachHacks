@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -24,6 +25,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -71,7 +74,7 @@ public class PreviousTimesFragment extends Fragment {
 
 //    private void refreshListView() {
 //        List savedTimesList = readSavedTimesFromDb();
-//        listView.setAdapter(new ArrayAdapter (
+//        listView.setAdapter(new ArrayAdapter(
 //                getContext(), android.R.layout.simple_list_item_1, savedTimesList
 //        ));
 //    }
@@ -80,12 +83,18 @@ public class PreviousTimesFragment extends Fragment {
 //        List times = new ArrayList();
 //        SharedPreferences prefs = getActivity().getSharedPreferences("savedtimes-sp", Context.MODE_PRIVATE);
 //
+//        Set<String> keys = prefs.keySet();
+//
+//        for(Map.Entry<String, ?> entry : keys.entrySet()) {
+//            Log.d("Map values ", entry.getKey() + " - " + entry.getValue().toString());
+//        }
+//
 //        long time = prefs.getLong("savedtimes-list", -1);
 //        if(time != -1) {
 //            times.add(0, time);
 //        }
-//        System.out.println("hiiiiiiiiii"+times.get(0));
-//        System.out.println("hiiiiiiiiii"+times.get(1));
+//        System.out.println("hiiiiiiiiii - " + prefs);
+////        System.out.println("hiiiiiiiiii"+times.get(1));
 //        return times;
 //    }
 }

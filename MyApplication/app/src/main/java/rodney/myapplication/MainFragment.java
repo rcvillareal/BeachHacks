@@ -36,7 +36,9 @@ public class MainFragment extends Fragment {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateFragment(new StartFragment());
+                Intent intent = new Intent(getActivity(), StartActivity.class);
+                startActivity(intent);
+//                updateFragment(new StartFragment());
             }
         });
 

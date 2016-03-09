@@ -1,9 +1,11 @@
 package rodney.myapplication;
 
 //import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -41,6 +43,11 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        PowerManager mgr = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        PowerManager.WakeLock wakeLock = mgr.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyWakeLock");
+        wakeLock.acquire();
+
 //        Firebase.setAndroidContext(this);
 //        firebase = new Firebase("https://glowing-heat-3728.firebaseio.com/");
 
@@ -153,7 +160,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.main_menu) {
             updateFragment(new MainFragment());
         } else if (id == R.id.start_fragment) {
-            updateFragment(new StartFragment());
+            Intent intent = new Intent(this, StartActivity.class);;
+            startActivity(intent);
+//            updateFragment(new StartFragment());
         } else if (id == R.id.previous_times_fragment) {
             updateFragment(new PreviousTimesFragment());
         } else if (id == R.id.about_fragment) {

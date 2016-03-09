@@ -35,17 +35,18 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".LoginActivity"
-            android:label="Login"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+        <!--<activity-->
+            <!--android:name=".LoginActivity"-->
+            <!--android:label="Login"-->
+            <!--android:theme="@style/AppTheme.NoActionBar">-->
+        <!--</activity>-->
 
 
        <activity
-           android:name=".StartFragment"
+           android:name=".StartActivity"
            android:label="Go Time!"
-           android:theme="@style/AppTheme.NoActionBar">
+           android:theme="@style/AppTheme.NoActionBar"
+           android:screenOrientation="portrait">
        </activity>
 
         <!--
