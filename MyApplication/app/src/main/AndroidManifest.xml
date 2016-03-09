@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="rodney.myapplication">
+    package="rodney.myapplication"
+    android:versionCode="3"
+    android:versionName="1.2">
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
+         location permissions for the 'MyLocation' functionality.
     -->
     <!--<uses-permission android:name="android.permission.INTERNET" />-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -16,6 +21,9 @@
         android:label="My Application"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCxb8nMofU0EOYP4nQnzYOS-rFq0-hHg2E"/>
+
         <activity
             android:name="rodney.myapplication.MainActivity"
             android:label="@string/app_name"
@@ -26,15 +34,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name="rodney.myapplication.StartActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name="rodney.myapplication.PreviousTimesActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name="rodney.myapplication.AboutActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".LoginActivity"
+            android:label="Login"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+
+       <activity
+           android:name=".StartFragment"
+           android:label="Go Time!"
+           android:theme="@style/AppTheme.NoActionBar">
+       </activity>
+
+        <!--
+      <activity
+          android:name=".PreviousTimesFragment"
+          android:label="Previous Times">
+      </activity>
+
+
+      <activity
+          android:name=".AboutFragment"
+          android:label="About">
+      </activity>
+      -->
 
     </application>
 
