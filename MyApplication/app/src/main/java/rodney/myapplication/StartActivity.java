@@ -2,6 +2,7 @@ package rodney.myapplication;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -11,6 +12,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -39,6 +42,8 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by rodney on 3/8/2016.
@@ -86,6 +91,8 @@ public class StartActivity extends AppCompatActivity implements
     private Location mCurrentLocation;
 
     private SharedPreferences prefs;
+    private String prefVal;
+    private Set<String> prefSet = new HashSet<String>();
 
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
@@ -136,6 +143,19 @@ public class StartActivity extends AppCompatActivity implements
         Log.d("CHECK", "CONNECTED? --------- " + mGoogleApiClient.isConnected());
 
         setContentView(R.layout.start);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                prefs = getSharedPreferences("savedtimes-sp", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putStringSet("savedtimes-list", prefSet);
+                editor.commit();
+                Intent intent = new Intent(StartActivity.this, MainActivity.class);;
+                startActivity(intent);
+            }
+        });
 
         Typeface xenotronFont = Typeface.createFromAsset(getAssets(), "Xenotron.ttf");
         Typeface bankGothicLightFont = Typeface.createFromAsset(getAssets(), "BankGothicLight.ttf");
@@ -199,9 +219,12 @@ public class StartActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
                 if(millis > 0) {
-                    prefs = getSharedPreferences("savedtimes-sp", Context.MODE_PRIVATE);
-                    //SharedPreferences.Editor editor = prefs.edit();
-                    prefs.edit().putLong("savedtimes-list", millis).apply();
+                    prefVal = "" + millis;
+//                    prefs = getSharedPreferences("savedtimes-sp", Context.MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = prefs.edit();
+//                    editor.putLong("savedtimes-list", millis);
+//                    editor.commit();
+                    prefSet.add(prefVal);
                     Toast toast = Toast.makeText(StartActivity.this, "Saved", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();

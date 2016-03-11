@@ -79,10 +79,10 @@
             android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/aboutButton"
+            android:id="@+id/previousTimesButton"
             android:background="@drawable/button_style"
             android:textColor="#ffffff"
-            android:text=" About"
+            android:text=" Previous Times"
             android:gravity="left|center_vertical"
             android:textSize="20sp"
             android:layout_marginBottom="15dp"

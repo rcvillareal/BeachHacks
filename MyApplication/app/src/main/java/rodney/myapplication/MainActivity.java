@@ -160,11 +160,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.main_menu) {
             updateFragment(new MainFragment());
         } else if (id == R.id.start_fragment) {
-            Intent intent = new Intent(this, StartActivity.class);;
+            Intent intent = new Intent(this, StartActivity.class);
             startActivity(intent);
 //            updateFragment(new StartFragment());
         } else if (id == R.id.previous_times_fragment) {
-            updateFragment(new PreviousTimesFragment());
+            Intent intent = new Intent(this, PreviousTimesActivity.class);
+            startActivity(intent);
+//            updateFragment(new PreviousTimesFragment());
         } else if (id == R.id.about_fragment) {
             updateFragment(new AboutFragment());
         }

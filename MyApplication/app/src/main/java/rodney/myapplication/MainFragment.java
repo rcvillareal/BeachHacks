@@ -19,6 +19,7 @@ import android.widget.ImageView;
 public class MainFragment extends Fragment {
 
     private Button startButton;
+    private Button previousTimesButton;
     private Button loginButton;
     private Button aboutButton;
 
@@ -42,13 +43,14 @@ public class MainFragment extends Fragment {
             }
         });
 
-        aboutButton = (Button) v.findViewById(R.id.aboutButton);
-        aboutButton.setTypeface(xenotronFont);
+        previousTimesButton = (Button) v.findViewById(R.id.previousTimesButton);
+        previousTimesButton.setTypeface(xenotronFont);
 
-        aboutButton.setOnClickListener(new View.OnClickListener() {
+        previousTimesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateFragment(new AboutFragment());
+                Intent intent = new Intent(getActivity(), PreviousTimesActivity.class);
+                startActivity(intent);
            }
         });
 
