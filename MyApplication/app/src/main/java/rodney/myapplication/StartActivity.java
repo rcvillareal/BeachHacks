@@ -257,6 +257,9 @@ public class StartActivity extends AppCompatActivity implements
                         CameraPosition cameraPosition = new CameraPosition.Builder().target(myLatLng).zoom(18).build();
                         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                         startMarker = mMap.addMarker(new MarkerOptions().position(myLatLng).title("Start Location"));
+                        Toast toast1 = Toast.makeText(StartActivity.this, "Click on your Destination", Toast.LENGTH_LONG);
+                        toast1.setGravity(Gravity.CENTER, 0, 0);
+                        toast1.show();
                     }
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(StartActivity.this, "Waiting for Google Client to Connect", Toast.LENGTH_LONG);
