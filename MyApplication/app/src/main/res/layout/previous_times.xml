@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#939393">
+
+    <!--
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#2b2b2b" >
+
+            <TextView
+                android:id="@+id/previousTimesTitle"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="Previous Times"
+                android:textSize="25sp"
+                android:textColor="#f9ec64"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </LinearLayout>
+    -->
+
+    <LinearLayout
+        android:layout_weight="5"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/map"
+            tools:context=".MainActivity"
+            android:name="com.google.android.gms.maps.SupportMapFragment">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|left"
+                android:layout_margin="@dimen/fab_margin"
+                android:src="@android:drawable/ic_menu_revert" />
+
+        </fragment>
+
+    </LinearLayout>
+
+    <View
+        android:background="#2b2b2b"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+    </View>
+
+    <LinearLayout
+        android:layout_weight="4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/main_menu"
+            android:title="Main Menu" />
+        <item
+            android:id="@+id/start_fragment"
+            android:title="Start Go Time!" />
+        <item
+            android:id="@+id/previous_times_fragment"
+            android:title="Previous Times" />
+        <item
+            android:id="@+id/about_fragment"
+            android:title="About" />
+    </group>
+
+</menu>
