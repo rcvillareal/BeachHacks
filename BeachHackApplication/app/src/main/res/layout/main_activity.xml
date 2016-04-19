@@ -1,49 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <LinearLayout
+    <include
+        layout="@layout/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/main_nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/drawer" />
 
-        <TextView
-            android:id="@+id/partyTitle"
-            android:text="Party Title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30dp"/>
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/itemEditText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/createPartyButton"
-        android:text="Create A PortaParty!"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:enabled="true"/>
-    <Button
-        android:id="@+id/addItemButton"
-        android:text="Add Item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:enabled="false" />
-
-    <include layout="@layout/party_items" />
-
-    <ListView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/userList"
-        android:dividerHeight="2dp"
-        android:divider="#c9cccb">
-    </ListView>
-
-</LinearLayout>
+</android.support.v4.widget.DrawerLayout>
