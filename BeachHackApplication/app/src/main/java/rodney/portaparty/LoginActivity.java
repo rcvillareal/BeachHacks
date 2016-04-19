@@ -32,12 +32,21 @@ public class LoginActivity extends AppCompatActivity
     private Firebase firebase;
     private EditText emailEditText;
     private EditText passwordEditText;
-    private String email;
+    private String email, uid,username;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        if(sharedPreferences.contains("username") && sharedPreferences.getString("username","NONE!") != "NONE!"){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+
         setContentView(R.layout.login_activity);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -68,19 +77,14 @@ public class LoginActivity extends AppCompatActivity
                         Log.i("TEST", "Success: " + authData);
                         Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                         email = (String) authData.getProviderData().get("email");
-                        String uid = authData.getUid();
-                        // Saves user info
-                        SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPref.edit();
-
+                        uid = authData.getUid();
                         firebase.child("user").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
                                 for (DataSnapshot childSnap : dataSnapshot.getChildren()) {
                                     if (childSnap.child("email").getValue().toString().equals(email)) {
-                                        SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sharedPref.edit();
-                                        String username = childSnap.child("username").getValue().toString();
+                                        username = childSnap.child("username").getValue().toString();
                                         String firstName = childSnap.child("firstName").getValue().toString();
                                         String lastName = childSnap.child("lastName").getValue().toString();
                                         String gender = childSnap.child("gender").getValue().toString();
@@ -88,7 +92,14 @@ public class LoginActivity extends AppCompatActivity
                                         editor.putString("firstName", firstName);
                                         editor.putString("lastName", lastName);
                                         editor.putString("gender", gender);
-                                        editor.apply();
+                                        editor.putString("email", email);
+                                        editor.putString("uid", uid);
+                                        editor.commit();
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.putExtra("username", username);
+                                        intent.putExtra("email", email);
+                                        intent.putExtra("uid", uid);
+                                        startActivity(intent);
                                     }
                                 }
                             }
@@ -98,17 +109,6 @@ public class LoginActivity extends AppCompatActivity
 
                             }
                         });
-
-                        editor.putString("email", email);
-                        editor.putString("uid", uid);
-                        editor.apply();
-
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-                        intent.putExtra("username", sharedPref.getString("username", ""));
-                        intent.putExtra("email", email);
-                        intent.putExtra("uid", uid);
-                        startActivity(intent);
                     }
 
                     @Override
@@ -143,7 +143,7 @@ public class LoginActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.drawer, menu);
+        getMenuInflater().inflate(R.menu.drawer, menu);
         return true;
     }
 
@@ -155,9 +155,9 @@ public class LoginActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
+        if (id == R.id.action_settings) {
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

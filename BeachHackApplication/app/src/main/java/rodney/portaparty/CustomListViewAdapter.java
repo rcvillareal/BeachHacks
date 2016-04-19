@@ -4,6 +4,7 @@ package rodney.portaparty;
  * Created by rodney on 4/3/2016.
  */
         import android.content.Context;
+        import android.support.v7.widget.RecyclerView;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -15,12 +16,10 @@ package rodney.portaparty;
 
 public class CustomListViewAdapter extends BaseAdapter {
 
-
     private Context myContext;
     private ArrayList<HashMap<String, String>> buildingArray;
     private static LayoutInflater inflater = null;
     private TextView potluckItemTextView;
-    private TextView potluckNameTextView;
 
 
     public CustomListViewAdapter(Context context, ArrayList<HashMap<String, String>> data) {
@@ -28,6 +27,11 @@ public class CustomListViewAdapter extends BaseAdapter {
         buildingArray = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+    }
+
+    private static class ViewHolder{
+        TextView  potluckItemTextView;
+        int position;
     }
 
     @Override
@@ -47,20 +51,20 @@ public class CustomListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = convertView;
-        if (convertView == null) {
-            view = inflater.inflate(R.layout.list_row, null);
-            potluckItemTextView = (TextView) view.findViewById(R.id.potLuckItem);
-           // potluckNameTextView = (TextView) view.findViewById(R.id.potLuckName);
-
-            HashMap<String, String> myHashMap = new HashMap<>();
-            myHashMap = buildingArray.get(position);
-            potluckItemTextView.setText(myHashMap.get("item"));
-            //potluckNameTextView.setText(myHashMap.get("username"));
-
-            //        iconImage.setImageDrawable(myContext.getResources().getDrawable(R.drawable.ic_perm_media));
-            //        expandImage.setImageDrawable(myContext.getResources().getDrawable(R.drawable.ic_navigate_next_black));
+        ViewHolder vh;
+        if (convertView == null){
+            vh = new ViewHolder();
+            convertView = inflater.inflate(R.layout.list_row, null);
+            vh.potluckItemTextView = (TextView) convertView.findViewById(R.id.potLuckItem);
+            convertView.setTag(vh);
+        } else {
+            vh = (ViewHolder) convertView.getTag();
         }
-        return view;
+        HashMap<String, String> myHashMap;
+
+        myHashMap = buildingArray.get(position);
+
+        vh.potluckItemTextView.setText(myHashMap.get("item"));
+        return convertView;
     }
 }
